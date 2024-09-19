@@ -1,0 +1,20 @@
+{
+  "name": "curriculum-ai",
+  "version": "1.0.1",
+  "description": "Back-End code for CurriculumAI application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "author": "CurriculumAI",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  }
+}
