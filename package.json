@@ -1,6 +1,6 @@
 {
   "name": "curriculum-ai",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Back-End code for CurriculumAI application",
   "main": "server.js",
   "type": "module",
