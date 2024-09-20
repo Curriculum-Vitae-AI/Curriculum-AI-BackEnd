@@ -1,0 +1,8 @@
+CREATE TABLE tb_log(
+	id BIGSERIAL PRIMARY KEY,
+	request JSONB NOT NULL,
+	response JSONB NOT NULL,
+	service VARCHAR NOT NULL,
+	"date" TIMESTAMP NOT NULL,
+	CONSTRAINT service_check CHECK (service IN ('ROADMAP', 'CARTA_DE_MOTIVACAO', 'VAGAS'))
+);
