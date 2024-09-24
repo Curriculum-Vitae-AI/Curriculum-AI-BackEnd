@@ -1,20 +1,27 @@
-import { Pool } from "pg";
+import pg from 'pg';
+import dotenv from 'dotenv';
 
-const pool = new Pool({
+dotenv.config({ path: './src/config/app.env' });
+
+const pool = new pg.Pool({
     user: process.env.USER,
     password: process.env.PASSWORD,
     host: process.env.HOST,
     port: process.env.DATABASE_PORT,
-    database: process.env.LOG_DATABASE
+    database: process.env.LOG_DATABASE,
+    ssl: {
+        rejectUnauthorized: true,
+        ca: process.env.DATABASE_CERTIFICATE
+    }
 })
 
-const connect = async () => {
+const connect = async function() {
     try {
         await pool.connect();
-        console.log('Ok')
+        console.log('Connected sucessfully')
     } catch (exception) {
-        console.log('Error')
+        console.log(exception)
     }
 }
 
-export default { pool, connect }
+export default { pool, connect };
