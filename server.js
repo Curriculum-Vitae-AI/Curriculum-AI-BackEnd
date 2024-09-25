@@ -12,7 +12,7 @@ const appInit = async () => {
     await db.connect();
     
     const APP = express();
-    const PORT = process.env.PORT;
+    const PORT = process.env.APP_PORT;
 
     APP.use(router);
     APP.listen(
