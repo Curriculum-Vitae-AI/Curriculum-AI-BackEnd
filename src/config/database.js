@@ -1,5 +1,6 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
+import { Logger } from '../utils/log/logger.js';
 
 dotenv.config({ path: './src/config/app.env' });
 
@@ -18,9 +19,10 @@ const pool = new pg.Pool({
 const connect = async function() {
     try {
         await pool.connect();
-        console.log('Connected sucessfully')
+        Logger.app('Conectado ao banco de dados com sucesso.')
     } catch (exception) {
-        console.log(exception)
+        Logger.error('connect', exception)
+        throw exception;
     }
 }
 
