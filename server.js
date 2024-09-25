@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { Logger } from './src/utils/log/logger.js';
+import { Logger } from './src/core/utils/log/logger.js';
 
 import router from './src/routes/routes.js';
 import db from './src/config/database.js';
@@ -12,7 +12,7 @@ const appInit = async () => {
     await db.connect();
     
     const APP = express();
-    const PORT = process.env.PORT;
+    const PORT = process.env.APP_PORT;
 
     APP.use(router);
     APP.listen(
