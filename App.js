@@ -2,8 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { Logger } from './src/core/utils/log/logger.js';
 
-import router from './src/routes/routes.js';
-import db from './src/config/database.js';
+import router from './src/routes/Routes.js';
+import db from './src/config/DataBaseConfig.js';
 
 dotenv.config({ path: './src/config/app.env' });
 

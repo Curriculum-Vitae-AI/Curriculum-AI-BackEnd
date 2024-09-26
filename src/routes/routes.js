@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import LogEntity from '../core/domain/entities/log.js';
+import LogEntity from '../core/domain/entities/Log.js';
 
 const router = Router();
 

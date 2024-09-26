@@ -2,11 +2,11 @@
   "name": "curriculum-ai",
   "version": "1.0.2",
   "description": "Back-End code for CurriculumAI application",
-  "main": "server.js",
+  "main": "App.js",
   "type": "module",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node App",
+    "dev": "nodemon App"
   },
   "author": "CurriculumAI",
   "license": "ISC",
