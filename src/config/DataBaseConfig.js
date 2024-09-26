@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import dotenv from 'dotenv';
 
-import { Logger } from '../core/utils/log/logger.js';
+import Logger from '../core/utils/log/Logger.js';
 
 dotenv.config({ path: './src/config/app.env' });
 
@@ -23,11 +23,11 @@ const sequelize = new Sequelize({
 const connect = async function() {
     try {
         await sequelize.sync();
-        Logger.app('Banco de dados sincronizado com sucesso.')
+        Logger.app('Banco de dados sincronizado com sucesso.');
     } catch (exception) {
-        Logger.error('connect', exception)
+        Logger.error('connect', exception);
         throw exception;
     }
-}
+};
 
 export default { sequelize, connect };
