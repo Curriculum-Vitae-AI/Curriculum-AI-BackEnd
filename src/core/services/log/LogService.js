@@ -1,7 +1,7 @@
 import LogRepository from '../../repositories/LogRepository.js';
 import Logger from '../../utils/log/Logger.js';
 
-export class LogService {
+export default class LogService {
     constructor() {
         this.logRepository = new LogRepository();
     }
@@ -15,9 +15,9 @@ export class LogService {
                 service: svc,
                 date: new Date()
             };
-            Logger.info(methodName, `Salvando Log: ${logEntity.toString}`);
+            Logger.info(methodName, `Salvando log no banco de dados...`);
             const response = await this.logRepository.save(logEntity);
-            Logger.info(methodName, 'Salvo com sucesso!');
+            Logger.info(methodName, 'Log salvo com sucesso!');
             return response;
         } catch (exception) {
             Logger.error(methodName, exception);

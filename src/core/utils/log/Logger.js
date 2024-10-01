@@ -15,10 +15,14 @@ export default class Logger {
     }
 
     static error(methodName, exception) {
-        console.log(chalk.red('[ERROR] ') + `Ocorreu um erro ao processar o método ${methodName}: ${exception}`);
+        console.log(chalk.red('[ERROR] ') + `Ocorreu um erro ao processar ${methodName}. ${exception}`);
     }
 
     static app(message) {
         console.log(chalk.yellow('[APP] ') + message);
+    }
+
+    static controller(endpoint) {
+        console.log(chalk.rgb(255, 192, 203)('[CONTROLLER] ') + `Chamada recebida para o endpoint: ${endpoint}`);
     }
 }
