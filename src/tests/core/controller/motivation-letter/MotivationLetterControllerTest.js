@@ -1,19 +1,19 @@
-import { createRoadMap } from '../../../../core/controllers/roadmap/RoadMapController.js';
-import RoadMapService from '../../../../core/services/roadmap/RoadMapService.js';
+import { createMotivationLetter } from '../../../../core/controllers/motivation-letter/MotivationLetterController.js';
+import MotivationLetterService from '../../../../core/services/motivation-letter/MotivationLetterService.js';
 import Logger from '../../../../core/utils/log/Logger.js';
 import RequestValidator from '../../../../core/domain/validators/RequestValidator.js';
 import ApiException from '../../../../core/domain/exceptions/ApiException.js';
 
-jest.mock('../../../../core/services/roadmap/RoadMapService.js');
+jest.mock('../../../../core/services/motivation-letter/MotivationLetterService.js');
 jest.mock('../../../../core/utils/log/Logger.js', () => ({
     controller: jest.fn(),
     error: jest.fn()
 }));
 jest.mock('../../../../core/domain/validators/RequestValidator.js', () => ({
-    validateRoadMapRequest: jest.fn()
+    validateMotivationLetterRequest: jest.fn()
 }));
 
-describe('createRoadMapTest', () => {
+describe('createMotivationLetter', () => {
     let request;
     let response;
 
@@ -24,31 +24,33 @@ describe('createRoadMapTest', () => {
         };
         request = {
             body: {
-                job: 'I want a back end job'
+                company: 'Company test',
+                role: 'Role test',
+                experience: 'Experience test'
             }
         };
     });
 
-    it('Should create a roadmap successfully', async () => {
-        const expectedResult = { response: 'Roadmap created successfully' };
-        RoadMapService.prototype.generateRoadmap.mockResolvedValue(expectedResult);
+    it('Should create a motivation letter successfully', async () => {
+        const expectedResult = { response: 'MotivationLetter created successfully' };
+        MotivationLetterService.prototype.generateMotivationLetter.mockResolvedValue(expectedResult);
 
-        await createRoadMap(request, response);
+        await createMotivationLetter(request, response);
         expect(Logger.controller).toHaveBeenCalledTimes(1);
-        expect(RequestValidator.validateRoadMapRequest).toHaveBeenCalledTimes(1);
+        expect(RequestValidator.validateMotivationLetterRequest).toHaveBeenCalledTimes(1);
         expect(response.status).toHaveBeenCalledWith(200);
         expect(response.json).toHaveBeenCalledWith(expectedResult);
     });
 
     it('Should threat exception without code and message', async () => {
-        RoadMapService.prototype.generateRoadmap.mockImplementation(() => {
+        MotivationLetterService.prototype.generateMotivationLetter.mockImplementation(() => {
             throw new Error();
         });
 
-        await createRoadMap(request, response);
+        await createMotivationLetter(request, response);
         expect(Logger.controller).toHaveBeenCalledTimes(1);
         expect(Logger.error).toHaveBeenCalledTimes(1);
-        expect(RequestValidator.validateRoadMapRequest).toHaveBeenCalledTimes(1);
+        expect(RequestValidator.validateMotivationLetterRequest).toHaveBeenCalledTimes(1);
         expect(response.status).toHaveBeenCalledWith(500);
         expect(response.json).toHaveBeenCalledWith({
             title: 'ERRO!',
@@ -59,14 +61,14 @@ describe('createRoadMapTest', () => {
 
     it('Should threat exception with code and message', async () => {
         const errorMessage = 'Error message';
-        RoadMapService.prototype.generateRoadmap.mockImplementation(() => {
+        MotivationLetterService.prototype.generateMotivationLetter.mockImplementation(() => {
             throw new ApiException(errorMessage, 404);
         });
 
-        await createRoadMap(request, response);
+        await createMotivationLetter(request, response);
         expect(Logger.controller).toHaveBeenCalledTimes(1);
         expect(Logger.error).toHaveBeenCalledTimes(1);
-        expect(RequestValidator.validateRoadMapRequest).toHaveBeenCalledTimes(1);
+        expect(RequestValidator.validateMotivationLetterRequest).toHaveBeenCalledTimes(1);
         expect(response.status).toHaveBeenCalledWith(404);
         expect(response.json).toHaveBeenCalledWith({
             title: 'ERRO!',
