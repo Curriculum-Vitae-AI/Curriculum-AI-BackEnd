@@ -1,6 +1,6 @@
 import Logger from '../../../../core/utils/log/Logger.js';
 import LogService from '../../../../core/services/log/LogService.js';
-import RoadMapService from '../../../../core/services/roadmap/RoadMapService.js';
+import MotivationLetterService from '../../../../core/services/motivation-letter/MotivationLetterService.js';
 import { format } from 'date-fns';
 
 jest.mock('../../../../core/utils/log/Logger.js', () => ({
@@ -11,12 +11,12 @@ jest.mock('../../../../core/utils/log/Logger.js', () => ({
 }));
 jest.mock('../../../../core/services/log/LogService.js');
 
-describe('RodMapService', () => {
-    const roadMapService = new RoadMapService();
-    it('Should generateRoadMap from request', async () => {
-        const expected = `Requisição de ROADMAP efetuada com sucesso. Log salvo em ${format(new Date(), 'dd/MM/yyyy HH:mm')}`;
+describe('MotivationLetterService', () => {
+    const motivationLetterService = new MotivationLetterService();
+    it('Should generateMotivationLetter from request', async () => {
+        const expected = `Requisição de CARTA_DE_MOTIVACAO efetuada com sucesso. Log salvo em ${format(new Date(), 'dd/MM/yyyy HH:mm')}`;
         LogService.prototype.createLog.mockResolvedValue(expected);
-        const response = await roadMapService.generateRoadmap('request');
+        const response = await motivationLetterService.generateMotivationLetter('request');
         expect(response.message).toBe(expected);
         expect(Logger.start).toHaveBeenCalledTimes(1);
         expect(Logger.finish).toHaveBeenCalledTimes(1);
@@ -26,7 +26,7 @@ describe('RodMapService', () => {
         LogService.prototype.createLog.mockImplementation(() => {
             throw new Error();
         });
-        await expect(roadMapService.generateRoadmap('request')).rejects.toThrow();
+        await expect(motivationLetterService.generateMotivationLetter('request')).rejects.toThrow();
         expect(Logger.start).toHaveBeenCalledTimes(1);
         expect(Logger.finish).toHaveBeenCalledTimes(1);
         expect(Logger.info).toHaveBeenCalledTimes(1);

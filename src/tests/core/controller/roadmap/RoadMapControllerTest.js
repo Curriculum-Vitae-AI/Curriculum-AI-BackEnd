@@ -1,15 +1,15 @@
-import { createRoadMap } from '../../../core/controllers/roadmap/RoadMapController.js';
-import RoadMapService from '../../../core/services/roadmap/RoadMapService.js';
-import Logger from '../../../core/utils/log/Logger.js';
-import RequestValidator from '../../../core/domain/validators/RequestValidator.js';
-import ApiException from '../../../core/domain/exceptions/ApiException.js';
+import { createRoadMap } from '../../../../core/controllers/roadmap/RoadMapController.js';
+import RoadMapService from '../../../../core/services/roadmap/RoadMapService.js';
+import Logger from '../../../../core/utils/log/Logger.js';
+import RequestValidator from '../../../../core/domain/validators/RequestValidator.js';
+import ApiException from '../../../../core/domain/exceptions/ApiException.js';
 
-jest.mock('../../../core/services/roadmap/RoadMapService.js');
-jest.mock('../../../core/utils/log/Logger.js', () => ({
+jest.mock('../../../../core/services/roadmap/RoadMapService.js');
+jest.mock('../../../../core/utils/log/Logger.js', () => ({
     controller: jest.fn(),
     error: jest.fn()
 }));
-jest.mock('../../../core/domain/validators/RequestValidator.js', () => ({
+jest.mock('../../../../core/domain/validators/RequestValidator.js', () => ({
     validateRoadMapRequest: jest.fn()
 }));
 
@@ -58,7 +58,7 @@ describe('createRoadMapTest', () => {
     });
 
     it('Should threat exception with code and message', async () => {
-        const errorMessage = 'Error message'
+        const errorMessage = 'Error message';
         RoadMapService.prototype.generateRoadmap.mockImplementation(() => {
             throw new ApiException(errorMessage, 404);
         });
