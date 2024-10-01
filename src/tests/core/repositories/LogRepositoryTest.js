@@ -18,9 +18,9 @@ describe('LogRepository', () => {
             },
             service: 'ROADMAP',
             date: new Date()
-        }
-        LogEntity.create.mockResolvedValue(logEntity)
+        };
+        LogEntity.create.mockResolvedValue(logEntity);
         const response = await logRepository.save(logEntity);
         expect(response).toBe(logEntity);
-    })
-})
+    });
+});

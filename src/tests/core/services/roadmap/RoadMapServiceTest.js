@@ -14,14 +14,14 @@ jest.mock('../../../../core/services/log/LogService.js');
 describe('RodMapService', () => {
     const roadMapService = new RoadMapService();
     it('Should generateRoadMap from request', async () => {
-        const expected = `Requisição de ROADMAP efetuada com sucesso. Log salvo em ${format(new Date(), 'dd/MM/yyyy HH:mm')}`
+        const expected = `Requisição de ROADMAP efetuada com sucesso. Log salvo em ${format(new Date(), 'dd/MM/yyyy HH:mm')}`;
         LogService.prototype.createLog.mockResolvedValue(expected);
         const response = await roadMapService.generateRoadmap('request');
         expect(response.message).toBe(expected);
         expect(Logger.start).toHaveBeenCalledTimes(1);
         expect(Logger.finish).toHaveBeenCalledTimes(1);
         expect(Logger.info).toHaveBeenCalledTimes(2);
-    })
+    });
     it('Should throw exception when error happens', async () => {
         LogService.prototype.createLog.mockImplementation(() => {
             throw new Error();
@@ -31,5 +31,5 @@ describe('RodMapService', () => {
         expect(Logger.finish).toHaveBeenCalledTimes(1);
         expect(Logger.info).toHaveBeenCalledTimes(1);
         expect(Logger.error).toHaveBeenCalledTimes(1);
-    })
-})
+    });
+});
