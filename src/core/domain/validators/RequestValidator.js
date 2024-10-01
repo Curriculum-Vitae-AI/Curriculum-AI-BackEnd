@@ -6,4 +6,15 @@ export default class RequestValidator {
             throw new ApiException('Requisição sem o atributo job.', 400);
         }
     }
+    static validateMotivationLetterRequest(request) {
+        if (!request.company || request.company.lenght === 0) {
+            throw new ApiException('Requisição sem o atributo company.', 400);
+        }
+        if (!request.role || request.role.lenght === 0) {
+            throw new ApiException('Requisição sem o atributo role.', 400);
+        }
+        if (!request.experience || request.experience.lenght === 0) {
+            throw new ApiException('Requisição sem o atributo experience.', 400);
+        }
+    }
 }
