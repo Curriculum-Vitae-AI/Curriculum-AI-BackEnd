@@ -22,11 +22,34 @@ describe('validateMotivationLetterRequest', () => {
         expect(() => RequestValidator.validateMotivationLetterRequest(request)).toThrow(ApiException);
     });
     it('Should throw exception when request experience does not exists.', () => {
-        const request = {company: 'teste', role: 'test'};
+        const request = {company: 'test', role: 'test'};
         expect(() => RequestValidator.validateMotivationLetterRequest(request)).toThrow(ApiException);
     });
     it('Should not throw exception when request is valid.', () => {
-        const request = {company: 'teste', role: 'test', experience: 'test'};
+        const request = {company: 'test', role: 'test', experience: 'test'};
         expect(() => RequestValidator.validateMotivationLetterRequest(request)).not.toThrow(ApiException);
+    });
+});
+
+describe('validateVacancyRequest', () => {
+    it('Should throw exception when request role does not exists.', () => {
+        const request = {};
+        expect(() => RequestValidator.validateVacancyRequest(request)).toThrow(ApiException);
+    });
+    it('Should throw exception when request locality does not exists.', () => {
+        const request = {role: 'test'};
+        expect(() => RequestValidator.validateVacancyRequest(request)).toThrow(ApiException);
+    });
+    it('Should throw exception when request seniority does not exists.', () => {
+        const request = {role: 'test', locality: 'test'};
+        expect(() => RequestValidator.validateVacancyRequest(request)).toThrow(ApiException);
+    });
+    it('Should throw exception when request additional_informations does not exists.', () => {
+        const request = {role: 'test', locality: 'test', seniority: 'test'};
+        expect(() => RequestValidator.validateVacancyRequest(request)).toThrow(ApiException);
+    });
+    it('Should not throw exception when request is valid.', () => {
+        const request = {role: 'test', locality: 'test', seniority: 'test', additional_informations: 'test'};
+        expect(() => RequestValidator.validateVacancyRequest(request)).not.toThrow(ApiException);
     });
 });
