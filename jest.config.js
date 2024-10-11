@@ -4,7 +4,7 @@ const config = {
   collectCoverageFrom: [
     '**/core/**'
   ],
-  coverageDirectory: '/src/tests/coverage/',
+  coverageReporters: ['text'],
   coverageProvider: 'babel',
   coverageThreshold: {
     global: {
