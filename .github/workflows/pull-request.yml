@@ -5,6 +5,24 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  build-and-test-coverage:
+    name: Build & Test Coverage Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.17.0'
+
+      - name: Clean and install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
   commit-lint:
     name: ConventionalCommits Validation
     runs-on: ubuntu-latest
