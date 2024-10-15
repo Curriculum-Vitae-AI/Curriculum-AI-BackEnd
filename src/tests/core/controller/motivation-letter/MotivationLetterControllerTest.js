@@ -20,7 +20,9 @@ describe('createMotivationLetter', () => {
     beforeEach(() => {
         response = {
             status: jest.fn().mockReturnThis(),
-            json: jest.fn()
+            json: jest.fn(),
+            setHeader: jest.fn().mockReturnThis(),
+            send: jest.fn().mockReturnThis()
         };
         request = {
             body: {
@@ -39,7 +41,7 @@ describe('createMotivationLetter', () => {
         expect(Logger.controller).toHaveBeenCalledTimes(1);
         expect(RequestValidator.validateMotivationLetterRequest).toHaveBeenCalledTimes(1);
         expect(response.status).toHaveBeenCalledWith(200);
-        expect(response.json).toHaveBeenCalledWith(expectedResult);
+        expect(response.setHeader).toHaveBeenCalledTimes(2);
     });
 
     it('Should threat exception without code and message', async () => {

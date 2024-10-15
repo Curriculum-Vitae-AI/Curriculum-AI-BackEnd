@@ -1,7 +1,7 @@
 import Logger from '../../../../core/utils/log/Logger.js';
 import LogService from '../../../../core/services/log/LogService.js';
 import MotivationLetterService from '../../../../core/services/motivation-letter/MotivationLetterService.js';
-import { format } from 'date-fns';
+import PdfService from '../../../../core/services/pdf/PdfService.js';
 
 jest.mock('../../../../core/utils/log/Logger.js', () => ({
     start: jest.fn(),
@@ -10,14 +10,15 @@ jest.mock('../../../../core/utils/log/Logger.js', () => ({
     error: jest.fn()
 }));
 jest.mock('../../../../core/services/log/LogService.js');
+jest.mock('../../../../core/services/pdf/PdfService.js');
 
 describe('MotivationLetterService', () => {
     const motivationLetterService = new MotivationLetterService();
     it('Should generateMotivationLetter from request', async () => {
-        const expected = `Requisição de CARTA_DE_MOTIVACAO efetuada com sucesso. Log salvo em ${format(new Date(), 'dd/MM/yyyy HH:mm')}`;
-        LogService.prototype.createLog.mockResolvedValue(expected);
+        const expected = 'result';
+        PdfService.prototype.generateMotivationLetterPdf.mockResolvedValue(expected);
         const response = await motivationLetterService.generateMotivationLetter('request');
-        expect(response.message).toBe(expected);
+        expect(response).toBe(expected);
         expect(Logger.start).toHaveBeenCalledTimes(1);
         expect(Logger.finish).toHaveBeenCalledTimes(1);
         expect(Logger.info).toHaveBeenCalledTimes(2);
