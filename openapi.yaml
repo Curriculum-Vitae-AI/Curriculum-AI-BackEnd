@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: ''
   description: | 
-      ![Título](/doc/images/Logo.png)
+      ![Título](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/images/Logo.png)
       ## Projeto:
       Curriculum AI é um projeto que tem como objetivo desenvolver uma interface gráfica com integração ChatGPT capaz de gerar roadmaps, cartas de motivação e indicar vagas conforme informações de experiência e vontades do usuário.
       ## Documentação:
