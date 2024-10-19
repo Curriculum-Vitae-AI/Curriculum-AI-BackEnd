@@ -1,0 +1,101 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.1.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" modified="2024-10-19T15:47:40.310Z" version="24.1.0" etag="ojEkVmQJ1jYBtfj7Pl7l" type="device">
+  <diagram name="Página-1" id="kvqB4XTYlVuP7oloyrDj">
+    <mxGraphModel dx="2087" dy="984" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bFlDrP61uAebZtQf7gFe-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="bFlDrP61uAebZtQf7gFe-1" target="bFlDrP61uAebZtQf7gFe-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;shadow=1;" parent="1" vertex="1">
+          <mxGeometry x="284" y="68" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="bFlDrP61uAebZtQf7gFe-2" target="bFlDrP61uAebZtQf7gFe-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-2" value="Recebe a requisição" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="264" y="173" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="bFlDrP61uAebZtQf7gFe-4" target="bFlDrP61uAebZtQf7gFe-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="486" y="323" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="bFlDrP61uAebZtQf7gFe-4" target="bFlDrP61uAebZtQf7gFe-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="324" y="441" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-4" value="Valida os campos da requisição" style="rhombus;whiteSpace=wrap;html=1;shadow=1;" parent="1" vertex="1">
+          <mxGeometry x="249.5" y="265" width="149" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-7" value="Faltando campo obrigatório" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="393" y="291" width="117" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-8" value="&lt;b&gt;Exceção&lt;br&gt;Bad Request &lt;br&gt;400&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="510" y="273.25" width="98.5" height="98.5" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-11" value="Contém todos os campos obrigatórios" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="330" y="379.75" width="122" height="34.25" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="bFlDrP61uAebZtQf7gFe-12" target="bFlDrP61uAebZtQf7gFe-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-12" value="Requisição ao ChatGPT para solicitar o conteúdo da carta de motivação" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="262" y="414" width="124" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="bFlDrP61uAebZtQf7gFe-13" target="bFlDrP61uAebZtQf7gFe-17" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="515" y="610.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="bFlDrP61uAebZtQf7gFe-13" target="bFlDrP61uAebZtQf7gFe-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="328" y="725" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="bFlDrP61uAebZtQf7gFe-13" target="bFlDrP61uAebZtQf7gFe-21" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="91" y="611" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-13" value="Valida resposta do ChatGPT" style="rhombus;whiteSpace=wrap;html=1;shadow=1;" parent="1" vertex="1">
+          <mxGeometry x="251.25" y="520" width="145.5" height="103" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-16" value="Resposta inválida" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="398.5" y="578" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-17" value="&lt;b&gt;Exceção&lt;br&gt;Internal Error &lt;br&gt;500&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="522" y="522.25" width="98.5" height="98.5" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-20" value="Resposta informando requisição incorreta" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="115.5" y="564" width="134" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-21" value="&lt;b&gt;Exceção&lt;br&gt;Bad Request &lt;br&gt;400&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;shadow=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="3" y="522.25" width="98.5" height="98.5" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="bFlDrP61uAebZtQf7gFe-22" target="bFlDrP61uAebZtQf7gFe-23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-22" value="Monta o PDF com as informações do ChatGPT" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="262" y="649" width="124" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="jgH24REX6Sh2TUdSJP96-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bFlDrP61uAebZtQf7gFe-23" target="jgH24REX6Sh2TUdSJP96-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bFlDrP61uAebZtQf7gFe-23" value="Salva Log no banco de dados indicando horário, requisição e resposta" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;glass=0;" parent="1" vertex="1">
+          <mxGeometry x="262" y="768" width="124" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="jgH24REX6Sh2TUdSJP96-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jgH24REX6Sh2TUdSJP96-2" target="jgH24REX6Sh2TUdSJP96-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jgH24REX6Sh2TUdSJP96-2" value="Retorna PDF montado" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;glass=0;" vertex="1" parent="1">
+          <mxGeometry x="262" y="868" width="124" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="jgH24REX6Sh2TUdSJP96-5" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="284" y="977" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
