@@ -1,8 +1,7 @@
 openapi: 3.0.0
 info:
-  title: ''
+  title: 'Curriculum-AI'
   description: | 
-      ![Título](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/images/Logo.png)
       ## Projeto:
       Curriculum AI é um projeto que tem como objetivo desenvolver uma interface gráfica com integração ChatGPT capaz de gerar roadmaps, cartas de motivação e indicar vagas conforme informações de experiência e vontades do usuário.
       ## Documentação:
@@ -19,9 +18,7 @@ paths:
         ### Descrição:
         Este endpoint é responsável por gerar uma carta de motivação em formato PDF se baseando nos dados informados pelo usuário.
         ### Funcionamento:
-        ![Fluxograma - Carta de Motivação](/doc/diagrams/CartaDeMotivacaoDraw.png)
-        ### Resposta:
-        ![PDF - Carta de Motivação](/doc/images/CartaDeMotivacao.png)
+        Acesse o fluxograma de carta de motivação clicando [aqui](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/diagrams/CartaDeMotivacaoDraw.png).
       summary: Criação de carta de motivação.
       requestBody:
         required: true
@@ -89,8 +86,6 @@ paths:
         Este endpoint é responsável por gerar uma roadmap em formato PDF se baseando nos dados informados pelo usuário.
         ### Funcionamento:
         ## TBD
-        ### Resposta:
-        ## TBD
       summary: Criação de RoadMap.
       requestBody:
         required: true
@@ -145,8 +140,6 @@ paths:
         ### Descrição:
         Este endpoint é responsável por encontrar links de vagas de acordo com a requisição do usuário.
         ### Funcionamento:
-        ## TBD
-        ### Resposta:
         ## TBD
       summary: Encontrar vagas.
       requestBody:
