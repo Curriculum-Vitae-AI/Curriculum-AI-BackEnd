@@ -1,0 +1,302 @@
+openapi: 3.0.0
+info:
+  title: ''
+  description: | 
+      ![Título](/doc/images/Logo.png)
+      ## Projeto:
+      Curriculum AI é um projeto que tem como objetivo desenvolver uma interface gráfica com integração ChatGPT capaz de gerar roadmaps, cartas de motivação e indicar vagas conforme informações de experiência e vontades do usuário.
+      ## Documentação:
+      Esta documentação tem como objetivo especificar os endpoints e serviços implementados no [Back-End](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd) da aplicação utilizando [Node JS](https://nodejs.org/pt).
+      ## Informações:
+      Para informações adicionais sobre as etapas de desenvolvimento da aplicação acesse nossa [Organização](https://github.com/Curriculum-Vitae-AI) no GitHub.
+  version: v1.2.0
+paths:
+  /motivation-letter/create:
+    post:
+      tags:
+        - Carta de Motivação
+      description: |
+        ### Descrição:
+        Este endpoint é responsável por gerar uma carta de motivação em formato PDF se baseando nos dados informados pelo usuário.
+        ### Funcionamento:
+        ![Fluxograma - Carta de Motivação](/doc/diagrams/CartaDeMotivacaoDraw.png)
+        ### Resposta:
+        ![PDF - Carta de Motivação](/doc/images/CartaDeMotivacao.png)
+      summary: Criação de carta de motivação.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MotivationLetterRequest'
+              examples:
+                MotivationLetterRequest:
+                  value:
+                    company: Curriculum-AI
+                    role: Desenvolvedor Node JS
+                    experience: Tenho experiência de 2 anos como desenvolvedor Java
+      responses:
+        '200':
+          description: |
+            Retorna arquivo [PDF](https://raw.githubusercontent.com/Curriculum-Vitae-AI/.github/main/profile/MotivationLetter_18-10-2024_17-32.pdf) gerado com sucesso.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+                example: | 
+                  Exemplo de resposta pode ser encontrada na descrição (link PDF).
+        '400':
+          description: Erro retornado quando o corpo da requisição está errada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                CompanyMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo company.
+                RoleMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo role.
+                ExperienceMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo experience.
+        '500':
+          description: Error retornado quando ocorre algum problema inesperado na aplicação.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                UnexpectedError:
+                  value:
+                    title: ERRO!
+                    code: 500
+                    error: Ocorreu um erro inesperado.
+  /roadmap/create:
+    post:
+      tags:
+        - RoadMap
+      description: |
+        ### Descrição:
+        Este endpoint é responsável por gerar uma roadmap em formato PDF se baseando nos dados informados pelo usuário.
+        ### Funcionamento:
+        ## TBD
+        ### Resposta:
+        ## TBD
+      summary: Criação de RoadMap.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoadMapRequest'
+              examples:
+                RoadMapRequest:
+                  value:
+                    job: Quero uma vaga de desenvolvedor Java junior
+      responses:
+        '200':
+          description: |
+            ## TBD
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+                example: | 
+                  Exemplo de resposta pode ser encontrada na descrição (link PDF).
+        '400':
+          description: Erro retornado quando o corpo da requisição está errada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                JobMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo job.
+        '500':
+          description: Error retornado quando ocorre algum problema inesperado na aplicação.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                UnexpectedError:
+                  value:
+                    title: ERRO!
+                    code: 500
+                    error: Ocorreu um erro inesperado.
+  /vacancy/find:
+    post:
+      tags:
+        - Vagas
+      description: |
+        ### Descrição:
+        Este endpoint é responsável por encontrar links de vagas de acordo com a requisição do usuário.
+        ### Funcionamento:
+        ## TBD
+        ### Resposta:
+        ## TBD
+      summary: Encontrar vagas.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VacancyRequest'
+              examples:
+                VacancyRequest:
+                  value:
+                    role: Programador Java
+                    locality: São Paulo
+                    seniority: Pleno
+                    additional_informations: Spring boot, mensageria
+      responses:
+        '200':
+          description: |
+            ## TBD
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+                example: | 
+                  Exemplo de resposta ainda será desenvolvido.
+        '400':
+          description: Erro retornado quando o corpo da requisição está errada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                RoleMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo role.
+                LocalityMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo locality.
+                SeniorityMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo seniority.
+                AditionalInformationMissing:
+                  value:
+                    title: ERRO!
+                    code: 400
+                    error: Requisição sem o atributo additional informations.
+        '500':
+          description: Error retornado quando ocorre algum problema inesperado na aplicação.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                UnexpectedError:
+                  value:
+                    title: ERRO!
+                    code: 500
+                    error: Ocorreu um erro inesperado.
+components:
+  schemas:
+    MotivationLetterRequest:
+      type: object
+      properties:
+        company:
+          type: string
+          example: Curriculum-Ai
+          description: Empresa responsável pela vaga em que o usuário esta se candidatando.
+        role:
+          type: string
+          example: Desenvolvedor Node JS
+          description: Vaga pela qual o usuário esta se candidatando
+        experience:
+          type: string
+          example: Tenho experiência de 2 anos como desenvolvedor Java
+          description: Experiência do usuário
+    RoadMapRequest:
+      type: object
+      properties:
+        job:
+          type: string
+          example: Quero uma vaga de desenvolvedor Java junior
+          description: Vaga pela qual o usuário quer se preparar para
+    VacancyRequest:
+      type: object
+      properties:
+        role:
+          type: string
+          example: Programador Java
+          description: Vaga pela qual o usuário está procurando
+        locality:
+          type: string
+          example: São Paulo
+          description: Localização da vaga esperada
+        seniority:
+          type: string
+          example: Senior
+          description: Nível de senioridade da vaga procurada
+        additional_informations:
+          type: string
+          example: Spring boot, mensageria kafka
+          description: Informações adicionais esperada na vaga
+    ErrorResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          example: ERRO!
+          description: Título da resposta
+        code:
+          type: number
+          example: 404
+          description: Código do erro
+        error:
+          type: string
+          example: Requisição sem o atributo experience.
+          description: Mensagem do erro
+    LogEntity:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+          description: Id da entidade
+        request:
+          type: string
+          example: {job: Vaga Java Senior}
+          description: Requisição feita para o ChatGPT
+        response:
+          type: string
+          example: {message: Esta é uma resposta do ChatGPT}
+          description: Resposta do ChatGPT
+        date:
+          type: string
+          example: '2024-10-18 22:17:58.262'
+          description: Data em que foi realizada a requisição
+tags:
+  - name: Boards de Desenvolvimento
+    description: Boards definindo as estórias a serem desenvolvidas bem como as  suas tarefas.
+    externalDocs:
+      url: https://github.com/orgs/Curriculum-Vitae-AI/projects
+      description: Acesse aqui
+  - name: Especificação do Projeto
+    description: Documento definindo os entregáveis do projeto.
+    externalDocs:
+      url: https://github.com/Curriculum-Vitae-AI/.github/blob/main/profile/EspecificacaoProjeto.pdf
+      description: Acesse aqui
