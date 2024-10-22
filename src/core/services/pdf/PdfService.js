@@ -15,10 +15,9 @@ export default class PdfService {
             this.#insertMotivationLetterHeader(pdf);
             const line = this.#insertText(55, text, 180, pdf);
             this.#insertMotivationLetterFooter(pdf, line);
-            const response = Buffer.from(pdf.output('arraybuffer'));
-            return response;
+            return Buffer.from(pdf.output('arraybuffer'));
         } catch (exception) {
-            Logger.error(methodName, exception)
+            Logger.error(methodName, exception);
             throw exception;
         } finally {
             Logger.finish(methodName);

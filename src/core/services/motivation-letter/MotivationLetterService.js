@@ -37,5 +37,5 @@ export default class MotivationLetterService {
         response: nao deve ter quebras de linha nem campos a serem preenchidos posteriomente; 
         greetings: neste coloque a finalização (ex: atenciosamente, nome)`
         };
-    };
+    }
 }
