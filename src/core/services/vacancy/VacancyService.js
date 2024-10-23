@@ -1,11 +1,11 @@
 import LogService from '../log/LogService.js';
 import Logger from '../../utils/log/Logger.js';
-
-import { format } from 'date-fns';
+import GeminiService from '../gemini/GeminiService.js';
 
 export default class VacancyService {
     constructor() {
         this.logService = new LogService();
+        this.geminiService = new GeminiService();
         this.serviceName = 'VAGAS';
     }
     async requestVacancyLinks(request) {
@@ -13,17 +13,26 @@ export default class VacancyService {
         Logger.start(methodName);
         try {
             Logger.info(methodName, 'Gerando links de vagas...');
-            const response = {
-                message: `Requisição de ${this.serviceName} efetuada com sucesso. Log salvo em ${format(new Date(), 'dd/MM/yyyy HH:mm')}`
-            };
-            await this.logService.createLog(request, response, this.serviceName);
+            const geminiRequest = this.#defineVacancyTextRequest(request);
+            const geminiResponse = await this.geminiService.getVacancyLinks(geminiRequest.data);
+            await this.logService.createLog(geminiRequest, geminiResponse, this.serviceName);
             Logger.info(methodName, 'Links de vagas gerados com sucesso!');
-            return response;
+            return geminiResponse;
         } catch (exception) {
             Logger.error(methodName, exception);
             throw exception;
         } finally {
             Logger.finish(methodName);
         }
+    }
+    #defineVacancyTextRequest(request) {
+        return {
+            data: `encontre link de vagas com os seguintes atributos:
+        cargo: ${request.role}
+        localidade: ${request.locality}
+        senioridade: ${request.seniority}
+        resposta:
+        code deve ser 200 para sucesso e 400 para caso os atributos não façam sentido`
+        };
     }
 }
