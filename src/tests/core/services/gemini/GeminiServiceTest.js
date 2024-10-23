@@ -49,7 +49,7 @@ describe('GeminiService', () => {
         expect(mockChatSession.sendMessage).toHaveBeenCalledWith(request);
         expect(Logger.start).toHaveBeenCalledWith('getMotivationLetterBody');
         expect(Logger.info).toHaveBeenCalledWith('getMotivationLetterBody', expect.any(String));
-        expect(GeminiResponseValidator.validateMotivationLetterResponse).toHaveBeenCalledWith({ success: true });
+        expect(GeminiResponseValidator.validateGeminiResponse).toHaveBeenCalledWith({ success: true });
         expect(result).toEqual({ success: true });
         expect(Logger.finish).toHaveBeenCalledWith('getMotivationLetterBody');
     });
