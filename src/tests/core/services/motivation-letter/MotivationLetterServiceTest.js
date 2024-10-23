@@ -11,6 +11,7 @@ jest.mock('../../../../core/utils/log/Logger.js', () => ({
 }));
 jest.mock('../../../../core/services/log/LogService.js');
 jest.mock('../../../../core/services/pdf/PdfService.js');
+jest.mock('../../../../core/services/gemini/GeminiService.js');
 
 describe('MotivationLetterService', () => {
     const motivationLetterService = new MotivationLetterService();

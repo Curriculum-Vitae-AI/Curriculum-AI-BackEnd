@@ -6,21 +6,18 @@ import Logger from '../../utils/log/Logger.js';
 const { TextField } = jsPDF.AcroForm;
 
 export default class PdfService {
-    generateMotivationLetterPdf() {
+    generateMotivationLetterPdf(geminiResponse) {
         const methodName = 'generateMotivationLetterPdf';
         try {
             Logger.start(methodName);
-            const text = 'Gostaria de expressar meu interesse pela posição de Desenvolvedor NodeJS Júnior na Curriculum AI. Tenho dois anos de experiência como desenvolvedor back-end, trabalhando com Java e Spring Boot, o que me proporcionou uma base sólida no desenvolvimento de sistemas escaláveis e robustos. Além disso, adquiri conhecimento em cloud computing utilizando AWS e Azure, bem como experiência em sistemas de mensageria via Kafka, o que me permitiu lidar com comunicação assíncrona e processamento de grandes volumes de dados. Estou empolgado com a possibilidade de expandir minhas habilidades para a stack NodeJS e acredito que essa oportunidade seria ideal para minha transição e crescimento profissional. Tenho um grande interesse na inovação e no impacto que a Curriculum AI está gerando e estou ansioso para contribuir com minha experiência e me desenvolver como parte da equipe.';
-
+            const text = geminiResponse.response.replace(/\n/g, '');
             const pdf = new jsPDF();
             this.#insertMotivationLetterHeader(pdf);
             const line = this.#insertText(55, text, 180, pdf);
             this.#insertMotivationLetterFooter(pdf, line);
-
-            const response = Buffer.from(pdf.output('arraybuffer'));
-            return response;
+            return Buffer.from(pdf.output('arraybuffer'));
         } catch (exception) {
-            Logger.error(methodName, exception)
+            Logger.error(methodName, exception);
             throw exception;
         } finally {
             Logger.finish(methodName);

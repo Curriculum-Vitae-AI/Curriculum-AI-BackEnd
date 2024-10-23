@@ -11,18 +11,16 @@ jest.mock('jspdf', () => {
         setFont: jest.fn(),
         setFontSize: jest.fn(),
         text: jest.fn(),
-        splitTextToSize: jest.fn((text, maxWidth) => {
-            return text.length > maxWidth ? text.split(' ') : [text];
-        }),
+        splitTextToSize: jest.fn((text, maxWidth) => text.length > maxWidth ? text.split(' ') : [text]),
         output: jest.fn(() => new ArrayBuffer(8)),
-        addField: jest.fn(),
+        addField: jest.fn()
     }));
 
     jsPDFMock.AcroForm = {
         TextField: jest.fn().mockImplementation(() => ({
             Rect: [],
-            fontSize: 8,
-        })),
+            fontSize: 8
+        }))
     };
 
     return { jsPDF: jsPDFMock };
@@ -31,14 +29,14 @@ jest.mock('jspdf', () => {
 jest.mock('../../../../core/utils/log/Logger.js', () => ({
     start: jest.fn(),
     finish: jest.fn(),
-    error: jest.fn(),
+    error: jest.fn()
 }));
 
 describe('PdfService', () => {
     const pdfService = new PdfService();
 
     it('should generate a PDF and call logger methods', () => {
-        const response = pdfService.generateMotivationLetterPdf();
+        const response = pdfService.generateMotivationLetterPdf({ response: 'Test' });
 
         expect(Logger.start).toHaveBeenCalledWith('generateMotivationLetterPdf');
         expect(Logger.finish).toHaveBeenCalledWith('generateMotivationLetterPdf');

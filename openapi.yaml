@@ -3,7 +3,7 @@ info:
   title: 'Curriculum-AI'
   description: | 
       ## Projeto:
-      Curriculum AI é um projeto que tem como objetivo desenvolver uma interface gráfica com integração ChatGPT capaz de gerar roadmaps, cartas de motivação e indicar vagas conforme informações de experiência e vontades do usuário.
+      Curriculum AI é um projeto que tem como objetivo desenvolver uma interface gráfica com integração Gemini capaz de gerar roadmaps, cartas de motivação e indicar vagas conforme informações de experiência e vontades do usuário.
       ## Documentação:
       Esta documentação tem como objetivo especificar os endpoints e serviços implementados no [Back-End](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd) da aplicação utilizando [Node JS](https://nodejs.org/pt).
       ## Informações:
@@ -18,7 +18,7 @@ paths:
         ### Descrição:
         Este endpoint é responsável por gerar uma carta de motivação em formato PDF se baseando nos dados informados pelo usuário.
         ### Funcionamento:
-        Acesse o fluxograma de carta de motivação clicando [aqui](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/diagrams/CartaDeMotivacaoDraw.png).
+        Acesse o fluxograma de carta de motivação clicando [aqui](https://raw.githubusercontent.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/diagrams/CartaDeMotivacaoDraw.pdf).
       summary: Criação de carta de motivação.
       requestBody:
         required: true
