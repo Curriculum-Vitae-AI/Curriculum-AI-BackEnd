@@ -40,8 +40,8 @@ describe('GeminiService', () => {
         jest.clearAllMocks();
     });
 
-    it('should call startChat, sendMessage and return the parsed response', async () => {
-        const request = { message: 'Please generate a motivation letter' };
+    it('getMotivationLetterBody', async () => {
+        const request = { message: 'Test' };
 
         const result = await geminiService.getMotivationLetterBody(request);
 
@@ -49,18 +49,42 @@ describe('GeminiService', () => {
         expect(mockChatSession.sendMessage).toHaveBeenCalledWith(request);
         expect(Logger.start).toHaveBeenCalledWith('getMotivationLetterBody');
         expect(Logger.info).toHaveBeenCalledWith('getMotivationLetterBody', expect.any(String));
-        expect(GeminiResponseValidator.validateMotivationLetterResponse).toHaveBeenCalledWith({ success: true });
+        expect(GeminiResponseValidator.validateGeminiResponse).toHaveBeenCalledWith({ success: true });
         expect(result).toEqual({ success: true });
         expect(Logger.finish).toHaveBeenCalledWith('getMotivationLetterBody');
     });
 
-    it('should log and throw an exception if an error occurs', async () => {
-        const request = { message: 'Please generate a motivation letter' };
-        const error = new Error('Something went wrong');
+    it('getMotivationLetterBody exception', async () => {
+        const request = { message: 'Test' };
+        const error = new Error('Test Error');
         mockChatSession.sendMessage.mockRejectedValue(error);
 
         await expect(geminiService.getMotivationLetterBody(request)).rejects.toThrow(error);
 
         expect(Logger.error).toHaveBeenCalledWith('getMotivationLetterBody', error);
+    });
+
+    it('getVacancyLinks', async () => {
+        const request = { message: 'Test' };
+
+        const result = await geminiService.getVacancyLinks(request);
+
+        expect(GoogleGenerativeAI).toHaveBeenCalledWith(process.env.GEMINI_KEY);
+        expect(mockChatSession.sendMessage).toHaveBeenCalledWith(request);
+        expect(Logger.start).toHaveBeenCalledWith('getVacancyLinks');
+        expect(Logger.info).toHaveBeenCalledWith('getVacancyLinks', expect.any(String));
+        expect(GeminiResponseValidator.validateGeminiResponse).toHaveBeenCalledWith({ success: true });
+        expect(result).toEqual({ success: true });
+        expect(Logger.finish).toHaveBeenCalledWith('getVacancyLinks');
+    });
+
+    it('getVacancyLinks exception', async () => {
+        const request = { message: 'Test' };
+        const error = new Error('Test Error');
+        mockChatSession.sendMessage.mockRejectedValue(error);
+
+        await expect(geminiService.getVacancyLinks(request)).rejects.toThrow(error);
+
+        expect(Logger.error).toHaveBeenCalledWith('getVacancyLinks', error);
     });
 });

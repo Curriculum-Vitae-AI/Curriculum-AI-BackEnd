@@ -1,4 +1,4 @@
-import { motivationLetterConfig, motivationLetterHistory } from '../../../config/GeminiConfig.js';
+import { motivationLetterConfig, motivationLetterHistory, vacancyConfig, vacancyHistory } from '../../../config/GeminiConfig.js';
 import Logger from '../../utils/log/Logger.js';
 import GeminiResponseValidator from '../../domain/validators/GeminiResponseValidator.js';
 
@@ -25,8 +25,29 @@ export default class GeminiService {
             Logger.info(methodName, 'Requisitando o Gemini para gerar o corpo da carta de motivação...');
             const geminiResponse = (await chatSession.sendMessage(request)).response.text().replace('```json', '').replace('```', '');
             const parsedResponse = JSON.parse(geminiResponse);
-            GeminiResponseValidator.validateMotivationLetterResponse(parsedResponse);
+            GeminiResponseValidator.validateGeminiResponse(parsedResponse);
             Logger.info(methodName, 'Corpo da carta de motivação gerado com sucesso!');
+            return parsedResponse;
+        } catch (exception) {
+            Logger.error(methodName, exception);
+            throw exception;
+        } finally {
+            Logger.finish(methodName);
+        }
+    }
+    async getVacancyLinks(request) {
+        const methodName = 'getVacancyLinks';
+        Logger.start(methodName);
+        try {
+            const chatSession = this.model.startChat({
+                vacancyConfig,
+                history: vacancyHistory
+            });
+            Logger.info(methodName, 'Requisitando o Gemini para encontrar links de vagas...');
+            const geminiResponse = (await chatSession.sendMessage(request)).response.text().replace('```json', '').replace('```', '');
+            const parsedResponse = JSON.parse(geminiResponse);
+            GeminiResponseValidator.validateGeminiResponse(parsedResponse);
+            Logger.info(methodName, 'Vagas encontradas com sucesso!');
             return parsedResponse;
         } catch (exception) {
             Logger.error(methodName, exception);
