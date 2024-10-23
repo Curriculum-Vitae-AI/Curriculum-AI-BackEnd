@@ -44,10 +44,6 @@ describe('validateVacancyRequest', () => {
         const request = {role: 'test', locality: 'test'};
         expect(() => RequestValidator.validateVacancyRequest(request)).toThrow(ApiException);
     });
-    it('Should throw exception when request additional_informations does not exists.', () => {
-        const request = {role: 'test', locality: 'test', seniority: 'test'};
-        expect(() => RequestValidator.validateVacancyRequest(request)).toThrow(ApiException);
-    });
     it('Should not throw exception when request is valid.', () => {
         const request = {role: 'test', locality: 'test', seniority: 'test', additional_informations: 'test'};
         expect(() => RequestValidator.validateVacancyRequest(request)).not.toThrow(ApiException);

@@ -27,8 +27,5 @@ export default class RequestValidator {
         if (!request.seniority || request.seniority.lenght === 0) {
             throw new ApiException('Requisição sem o atributo seniority.', 400);
         }
-        if (!request.additional_informations || request.additional_informations.lenght === 0) {
-            throw new ApiException('Requisição sem o atributo additional informations.', 400);
-        }
     }
 }

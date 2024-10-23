@@ -188,11 +188,6 @@ paths:
                     title: ERRO!
                     code: 400
                     error: Requisição sem o atributo seniority.
-                AditionalInformationMissing:
-                  value:
-                    title: ERRO!
-                    code: 400
-                    error: Requisição sem o atributo additional informations.
         '500':
           description: Error retornado quando ocorre algum problema inesperado na aplicação.
           content:
@@ -244,10 +239,6 @@ components:
           type: string
           example: Senior
           description: Nível de senioridade da vaga procurada
-        additional_informations:
-          type: string
-          example: Spring boot, mensageria kafka
-          description: Informações adicionais esperada na vaga
     ErrorResponse:
       type: object
       properties:
