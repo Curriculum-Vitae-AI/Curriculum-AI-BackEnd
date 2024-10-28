@@ -84,7 +84,7 @@ export default class PdfService {
         pdf.setFontSize(18);
         pdf.setTextColor(0, 93, 170);
         const text = geminiResponse.response.roadmapName;
-        pdf.text(text, this.#getCenterWidth(pdf, text), 40);
+        pdf.text(text, this.#getCenterWidth(pdf, text), 35);
     }
 
     #insertRoadMapBody(pdf, geminiResponse) {
@@ -96,16 +96,17 @@ export default class PdfService {
         };
 
         pdf.setTextColor(255, 255, 255);
-        let startLine = 65;
+        let startLine = 55;
 
         Object.entries(values).forEach(([key, value]) => {
             const textBlocks = [];
 
-            let updatedLine = this.#insertLevelHeader(startLine, key, textBlocks);
-            updatedLine = this.#insertTopics(pdf, updatedLine, value.topics, textBlocks);
+            const updatedLine = this.#insertLevelHeader(startLine, key, textBlocks);
+            this.#insertTopics(pdf, updatedLine, value.topics, textBlocks);
 
+            const rectHeight = key === 'INICIANTE' ? 250 : 280;
             pdf.setFillColor(0, 93, 170);
-            pdf.rect(5, startLine - 10, 200, updatedLine, 'F');
+            pdf.roundedRect(5, startLine - 10, 200, rectHeight, 10, 10, 'F');
 
             for (const text of textBlocks) {
                 pdf.setFont(text.font, text.fontType);

@@ -2,6 +2,7 @@ import LogService from '../log/LogService.js';
 import Logger from '../../utils/log/Logger.js';
 import PdfService from '../pdf/PdfService.js';
 import GeminiService from '../gemini/GeminiService.js';
+import GeminiResponseValidator from '../../domain/validators/GeminiResponseValidator.js';
 
 export default class MotivationLetterService {
     constructor() {
@@ -18,6 +19,7 @@ export default class MotivationLetterService {
             const geminiRequest = this.#defineMotivationLetterTextRequest(request);
             const geminiResponse = await this.geminiService.getMotivationLetterBody(geminiRequest.data);
             await this.logService.createLog(geminiRequest, geminiResponse, this.serviceName);
+            GeminiResponseValidator.validateGeminiResponse(geminiResponse);
             const pdf = this.pdfService.generateMotivationLetterPdf(geminiResponse);
             Logger.info(methodName, 'Carta de motivação gerada com sucesso!');
             return pdf;
