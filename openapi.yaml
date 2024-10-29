@@ -77,6 +77,11 @@ paths:
                     title: ERRO!
                     code: 500
                     error: Ocorreu um erro inesperado.
+                GeminiError:
+                  value:
+                    title: ERRO!
+                    code: 500
+                    error: Houve um erro com a resposta do Gemini.
   /roadmap/create:
     post:
       tags:
@@ -85,7 +90,7 @@ paths:
         ### Descrição:
         Este endpoint é responsável por gerar uma roadmap em formato PDF se baseando nos dados informados pelo usuário.
         ### Funcionamento:
-        ## TBD
+        Acesse o fluxograma de roadmap clicando [aqui](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/diagrams/Roadmap.pdf).
       summary: Criação de RoadMap.
       requestBody:
         required: true
@@ -100,7 +105,7 @@ paths:
       responses:
         '200':
           description: |
-            ## TBD
+            Retorna arquivo [PDF](https://raw.githubusercontent.com/Curriculum-Vitae-AI/.github/main/profile/RoadMap_28-10-2024_22-00.pdf) gerado com sucesso.
           content:
             application/pdf:
               schema:
@@ -132,6 +137,11 @@ paths:
                     title: ERRO!
                     code: 500
                     error: Ocorreu um erro inesperado.
+                GeminiError:
+                  value:
+                    title: ERRO!
+                    code: 500
+                    error: Houve um erro com a resposta do Gemini.
   /vacancy/find:
     post:
       tags:
@@ -140,7 +150,7 @@ paths:
         ### Descrição:
         Este endpoint é responsável por encontrar links de vagas de acordo com a requisição do usuário.
         ### Funcionamento:
-        ## TBD
+        Acesse o fluxograma de vagas clicando [aqui](https://github.com/Curriculum-Vitae-AI/Curriculum-AI-BackEnd/blob/main/doc/diagrams/Vacancy.pdf).
       summary: Encontrar vagas.
       requestBody:
         required: true
@@ -158,14 +168,16 @@ paths:
       responses:
         '200':
           description: |
-            ## TBD
+            Retorna link de vagas conforme resposta abaixo.
           content:
-            application/pdf:
+            application/json:
               schema:
-                type: string
-                format: binary
-                example: | 
-                  Exemplo de resposta ainda será desenvolvido.
+                $ref: '#/components/schemas/VacancyResponse'
+                examples:
+                  VacancyResponse:
+                    value:
+                      code: 200
+                  
         '400':
           description: Erro retornado quando o corpo da requisição está errada.
           content:
@@ -200,6 +212,11 @@ paths:
                     title: ERRO!
                     code: 500
                     error: Ocorreu um erro inesperado.
+                GeminiError:
+                  value:
+                    title: ERRO!
+                    code: 500
+                    error: Houve um erro com a resposta do Gemini.
 components:
   schemas:
     MotivationLetterRequest:
@@ -273,6 +290,19 @@ components:
           type: string
           example: '2024-10-18 22:17:58.262'
           description: Data em que foi realizada a requisição
+    VacancyResponse:
+      type: object
+      properties:
+        code:
+          type: number
+          example: 200
+          description: Código da resposta (200 ou 400)
+        response:
+          type: array
+          items:
+            type: string
+            example: ["link1", "link2", "link3"]
+            description: Links das vagas
 tags:
   - name: Boards de Desenvolvimento
     description: Boards definindo as estórias a serem desenvolvidas bem como as  suas tarefas.
