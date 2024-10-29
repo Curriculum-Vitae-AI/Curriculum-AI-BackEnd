@@ -1,6 +1,7 @@
 import LogService from '../log/LogService.js';
 import Logger from '../../utils/log/Logger.js';
 import GeminiService from '../gemini/GeminiService.js';
+import GeminiResponseValidator from '../../domain/validators/GeminiResponseValidator.js';
 
 export default class VacancyService {
     constructor() {
@@ -16,6 +17,7 @@ export default class VacancyService {
             const geminiRequest = this.#defineVacancyTextRequest(request);
             const geminiResponse = await this.geminiService.getVacancyLinks(geminiRequest.data);
             await this.logService.createLog(geminiRequest, geminiResponse, this.serviceName);
+            GeminiResponseValidator.validateGeminiResponse(geminiResponse);
             Logger.info(methodName, 'Links de vagas gerados com sucesso!');
             return geminiResponse;
         } catch (exception) {

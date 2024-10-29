@@ -2,6 +2,7 @@ import Logger from '../../../../core/utils/log/Logger.js';
 import LogService from '../../../../core/services/log/LogService.js';
 import MotivationLetterService from '../../../../core/services/motivation-letter/MotivationLetterService.js';
 import PdfService from '../../../../core/services/pdf/PdfService.js';
+import GeminiService from '../../../../core/services/gemini/GeminiService.js';
 
 jest.mock('../../../../core/utils/log/Logger.js', () => ({
     start: jest.fn(),
@@ -17,6 +18,7 @@ describe('MotivationLetterService', () => {
     const motivationLetterService = new MotivationLetterService();
     it('Should generateMotivationLetter from request', async () => {
         const expected = 'result';
+        GeminiService.prototype.getMotivationLetterBody.mockResolvedValue({ code: 200, response: 'test' });
         PdfService.prototype.generateMotivationLetterPdf.mockResolvedValue(expected);
         const response = await motivationLetterService.generateMotivationLetter('request');
         expect(response).toBe(expected);
