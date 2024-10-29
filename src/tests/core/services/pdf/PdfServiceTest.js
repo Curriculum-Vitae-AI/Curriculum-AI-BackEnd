@@ -13,7 +13,18 @@ jest.mock('jspdf', () => {
         text: jest.fn(),
         splitTextToSize: jest.fn((text, maxWidth) => text.length > maxWidth ? text.split(' ') : [text]),
         output: jest.fn(() => new ArrayBuffer(8)),
-        addField: jest.fn()
+        addField: jest.fn(),
+        internal: {
+            pageSize: {
+                getWidth: jest.fn(() => 595.28),
+                getHeight: jest.fn(() => 841.89)
+            }
+        },
+        getTextWidth: jest.fn(() => 2),
+        addPage: jest.fn(),
+        roundedRect: jest.fn(),
+        setTextColor: jest.fn(),
+        setFillColor: jest.fn()
     }));
 
     jsPDFMock.AcroForm = {
@@ -35,7 +46,7 @@ jest.mock('../../../../core/utils/log/Logger.js', () => ({
 describe('PdfService', () => {
     const pdfService = new PdfService();
 
-    it('should generate a PDF and call logger methods', () => {
+    it('generateMotivationLetterPdf', () => {
         const response = pdfService.generateMotivationLetterPdf({ response: 'Test' });
 
         expect(Logger.start).toHaveBeenCalledWith('generateMotivationLetterPdf');
@@ -43,12 +54,57 @@ describe('PdfService', () => {
         expect(response).toBeInstanceOf(Buffer);
     });
 
-    it('should log error and rethrow exception when an error occurs', () => {
+    it('generateRoadMapPdf', () => {
+        const response = pdfService.generateRoadMapPdf({ response: {
+            roadmapName: 'Test',
+            begginner: {
+                topics: [{
+                    topicName: 'test',
+                    matters: [{
+                        matterName: 'test',
+                        matterDescription: 'test'
+                    }]
+                }]
+            },
+            intermediate: {
+                topics: [{
+                    topicName: 'test',
+                    matters: [{
+                        matterName: 'test',
+                        matterDescription: 'test'
+                    }]
+                }]
+            },
+            advanced: {
+                topics: [{
+                    topicName: 'test',
+                    matters: [{
+                        matterName: 'test',
+                        matterDescription: 'test'
+                    }]
+                }]
+            }
+        }});
+        expect(Logger.start).toHaveBeenCalledWith('generateRoadMapPdf');
+        expect(Logger.finish).toHaveBeenCalledWith('generateRoadMapPdf');
+        expect(response).toBeInstanceOf(Buffer);
+    });
+
+    it('generateMotivationLetterPdf error', () => {
         const error = new Error('Test error');
         Logger.start.mockImplementation(() => {
             throw error;
         });
         expect(() => pdfService.generateMotivationLetterPdf()).toThrow(error);
+        expect(Logger.error).toHaveBeenCalledTimes(1);
+    });
+
+    it('generateRoadMapPdf error', () => {
+        const error = new Error('Test error');
+        Logger.start.mockImplementation(() => {
+            throw error;
+        });
+        expect(() => pdfService.generateRoadMapPdf('request')).toThrow(error);
         expect(Logger.error).toHaveBeenCalledTimes(1);
     });
 });

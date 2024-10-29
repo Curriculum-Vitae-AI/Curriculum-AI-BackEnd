@@ -1,6 +1,5 @@
 import { motivationLetterConfig, motivationLetterHistory, vacancyConfig, vacancyHistory, roadMapConfig, roadMapHistory } from '../../../config/GeminiConfig.js';
 import Logger from '../../utils/log/Logger.js';
-import GeminiResponseValidator from '../../domain/validators/GeminiResponseValidator.js';
 import ApiException from '../../domain/exceptions/ApiException.js';
 
 import { GoogleGenerativeAI } from '@google/generative-ai';

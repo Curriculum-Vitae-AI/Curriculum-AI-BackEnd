@@ -1,11 +1,9 @@
 import GeminiService from '../../../../core/services/gemini/GeminiService.js';
 import Logger from '../../../../core/utils/log/Logger.js';
-import GeminiResponseValidator from '../../../../core/domain/validators/GeminiResponseValidator.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 jest.mock('@google/generative-ai');
 jest.mock('../../../../core/utils/log/Logger.js');
-jest.mock('../../../../core/domain/validators/GeminiResponseValidator.js');
 
 jest.mock('../../../../core/utils/log/Logger.js', () => ({
     start: jest.fn(),
@@ -13,6 +11,9 @@ jest.mock('../../../../core/utils/log/Logger.js', () => ({
     info: jest.fn(),
     error: jest.fn()
 }));
+
+const testError = 'testError';
+const geminiError = 'Houve um erro com a resposta do Gemini.';
 
 describe('GeminiService', () => {
     let geminiService;
@@ -49,19 +50,41 @@ describe('GeminiService', () => {
         expect(mockChatSession.sendMessage).toHaveBeenCalledWith(request);
         expect(Logger.start).toHaveBeenCalledWith('getMotivationLetterBody');
         expect(Logger.info).toHaveBeenCalledWith('getMotivationLetterBody', expect.any(String));
-        expect(GeminiResponseValidator.validateGeminiResponse).toHaveBeenCalledWith({ success: true });
         expect(result).toEqual({ success: true });
         expect(Logger.finish).toHaveBeenCalledWith('getMotivationLetterBody');
     });
 
     it('getMotivationLetterBody exception', async () => {
         const request = { message: 'Test' };
-        const error = new Error('Test Error');
+        const error = new Error(testError);
         mockChatSession.sendMessage.mockRejectedValue(error);
 
-        await expect(geminiService.getMotivationLetterBody(request)).rejects.toThrow(error);
+        await expect(geminiService.getMotivationLetterBody(request)).rejects.toThrow(geminiError);
 
         expect(Logger.error).toHaveBeenCalledWith('getMotivationLetterBody', error);
+    });
+
+    it('getRoadMapBody', async () => {
+        const request = { message: 'Test' };
+
+        const result = await geminiService.getRoadMapBody(request);
+
+        expect(GoogleGenerativeAI).toHaveBeenCalledWith(process.env.GEMINI_KEY);
+        expect(mockChatSession.sendMessage).toHaveBeenCalledWith(request);
+        expect(Logger.start).toHaveBeenCalledWith('getRoadMapBody');
+        expect(Logger.info).toHaveBeenCalledWith('getRoadMapBody', expect.any(String));
+        expect(result).toEqual({ success: true });
+        expect(Logger.finish).toHaveBeenCalledWith('getRoadMapBody');
+    });
+
+    it('getRoadMapBody exception', async () => {
+        const request = { message: 'Test' };
+        const error = new Error(testError);
+        mockChatSession.sendMessage.mockRejectedValue(error);
+
+        await expect(geminiService.getRoadMapBody(request)).rejects.toThrow(geminiError);
+
+        expect(Logger.error).toHaveBeenCalledWith('getRoadMapBody', error);
     });
 
     it('getVacancyLinks', async () => {
@@ -73,17 +96,16 @@ describe('GeminiService', () => {
         expect(mockChatSession.sendMessage).toHaveBeenCalledWith(request);
         expect(Logger.start).toHaveBeenCalledWith('getVacancyLinks');
         expect(Logger.info).toHaveBeenCalledWith('getVacancyLinks', expect.any(String));
-        expect(GeminiResponseValidator.validateGeminiResponse).toHaveBeenCalledWith({ success: true });
         expect(result).toEqual({ success: true });
         expect(Logger.finish).toHaveBeenCalledWith('getVacancyLinks');
     });
 
     it('getVacancyLinks exception', async () => {
         const request = { message: 'Test' };
-        const error = new Error('Test Error');
+        const error = new Error(testError);
         mockChatSession.sendMessage.mockRejectedValue(error);
 
-        await expect(geminiService.getVacancyLinks(request)).rejects.toThrow(error);
+        await expect(geminiService.getVacancyLinks(request)).rejects.toThrow(geminiError);
 
         expect(Logger.error).toHaveBeenCalledWith('getVacancyLinks', error);
     });

@@ -20,7 +20,9 @@ describe('createRoadMapTest', () => {
     beforeEach(() => {
         response = {
             status: jest.fn().mockReturnThis(),
-            json: jest.fn()
+            json: jest.fn(),
+            setHeader: jest.fn().mockReturnThis(),
+            send: jest.fn()
         };
         request = {
             body: {
@@ -37,7 +39,8 @@ describe('createRoadMapTest', () => {
         expect(Logger.controller).toHaveBeenCalledTimes(1);
         expect(RequestValidator.validateRoadMapRequest).toHaveBeenCalledTimes(1);
         expect(response.status).toHaveBeenCalledWith(200);
-        expect(response.json).toHaveBeenCalledWith(expectedResult);
+        expect(response.setHeader).toHaveBeenCalledTimes(2);
+        expect(response.send).toHaveBeenCalledWith(expectedResult);
     });
 
     it('Should threat exception without code and message', async () => {
