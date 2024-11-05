@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import Logger from './src/core/utils/log/Logger.js';
 import roadMapRouter from './src/routes/roadmap/RoadMapRouter.js';
@@ -16,7 +17,12 @@ const appInit = async () => {
     const PORT = process.env.APP_PORT;
     const API = process.env.API_NAME;
     const VERSION = process.env.CONTROL_VERSION;
+    const CORS = process.env.CORS;
     const APP = express();
+
+    APP.use(cors({
+        origin: CORS
+    }));
 
     APP.use(express.json());
     APP.use(`/${API}/${VERSION}/roadmap`, roadMapRouter);
