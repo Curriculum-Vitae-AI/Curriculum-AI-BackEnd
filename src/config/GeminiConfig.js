@@ -69,13 +69,13 @@ export const vacancyHistory = [
     {
         role: 'user',
         parts: [
-            { text: 'encontre link de vagas com os seguintes atributos:n\ncargo: Programador Java\nlocalidade: São Paulo\nsenioridade: Pleno\n\nresposta:\ncode deve ser 200 para sucesso e 400 para caso os atributos não façam sentido' }
+            { text: 'encontre link de vagas com os seguintes atributos:n\ncargo: Programador Java\nlocalidade: São Paulo\n\nresposta:\ncode deve ser 200 para sucesso e 400 para caso os atributos não façam sentido' }
         ]
     },
     {
         role: 'model',
         parts: [
-            { text: '{"code": "200", "response": ["https://www.linkedin.com/jobs/search/?keywords=Programador%20Java&location=São%20Paulo%2C%20SP%2C%20Brasil&f_E=2&f_WT=2&f_AL=true&trk=public_jobs_jobs-search-bar_search-submit&position=1&pageNum=0", "https://www.indeed.com.br/empregos?q=Programador+Java&l=S%C3%A3o+Paulo%2C+SP&explvl=mid-level", "https://www.infojobs.com.br/empregos.aspx?palabra=programador+java"]}' }
+            { text: '{"code": "200", "response": ["https://www.linkedin.com/jobs/search/?&keywords=Programador+Java&location=São+Paulo", "https://indeed.com/empregos?q=Programador+Java&l=São+Paulo", "https://www.infojobs.com.br/empregos.aspx?palabra=programador+java"]}' }
         ]
     }
 ];
