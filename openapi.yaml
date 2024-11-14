@@ -163,8 +163,6 @@ paths:
                   value:
                     role: Programador Java
                     locality: São Paulo
-                    seniority: Pleno
-                    additional_informations: Spring boot, mensageria
       responses:
         '200':
           description: |
@@ -195,11 +193,6 @@ paths:
                     title: ERRO!
                     code: 400
                     error: Requisição sem o atributo locality.
-                SeniorityMissing:
-                  value:
-                    title: ERRO!
-                    code: 400
-                    error: Requisição sem o atributo seniority.
         '500':
           description: Error retornado quando ocorre algum problema inesperado na aplicação.
           content:
@@ -252,10 +245,6 @@ components:
           type: string
           example: São Paulo
           description: Localização da vaga esperada
-        seniority:
-          type: string
-          example: Senior
-          description: Nível de senioridade da vaga procurada
     ErrorResponse:
       type: object
       properties:
