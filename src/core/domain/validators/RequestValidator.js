@@ -24,8 +24,5 @@ export default class RequestValidator {
         if (!request.locality || request.locality.lenght === 0) {
             throw new ApiException('Requisição sem o atributo locality.', 400);
         }
-        if (!request.seniority || request.seniority.lenght === 0) {
-            throw new ApiException('Requisição sem o atributo seniority.', 400);
-        }
     }
 }

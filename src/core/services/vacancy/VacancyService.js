@@ -32,7 +32,6 @@ export default class VacancyService {
             data: `encontre link de vagas com os seguintes atributos:
         cargo: ${request.role}
         localidade: ${request.locality}
-        senioridade: ${request.seniority}
         resposta:
         code deve ser 200 para sucesso e 400 para caso os atributos não façam sentido`
         };
