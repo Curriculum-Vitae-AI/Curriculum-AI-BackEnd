@@ -75,7 +75,7 @@ export const vacancyHistory = [
     {
         role: 'model',
         parts: [
-            { text: '{"code": "200", "response": ["https://www.linkedin.com/jobs/search/?&keywords=Programador+Java&location=São+Paulo", "https://indeed.com/empregos?q=Programador+Java&l=São+Paulo", "https://www.infojobs.com.br/empregos.aspx?palabra=programador+java"]}' }
+            { text: '{"code": "200", "response": ["https://www.linkedin.com/jobs/search/?&keywords=Programador+Java&location=São+Paulo", "https://indeed.com/empregos?q=Programador+Java&l=São+Paulo", "https://www.infojobs.com.br/empregos.aspx?palabra=programador+java", "https://www.catho.com.br/vagas/programador-java/sao-paulo-sp/", "https://www.vagas.com.br/vagas-de-programador-java?São+Paulo"]}' }
         ]
     }
 ];
