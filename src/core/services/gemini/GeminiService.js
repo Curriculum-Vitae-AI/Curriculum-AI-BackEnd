@@ -3,6 +3,7 @@ import Logger from '../../utils/log/Logger.js';
 import ApiException from '../../domain/exceptions/ApiException.js';
 
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { jsonrepair } from 'jsonrepair';
 
 import dotenv from 'dotenv';
 dotenv.config({ path: './src/config/app.env' });
@@ -45,7 +46,7 @@ export default class GeminiService {
             });
             Logger.info(methodName, 'Requisitando o Gemini para gerar o corpo do roadmap...');
             const geminiResponse = (await chatSession.sendMessage(request)).response.text().replace('```json', '').replace('```', '');
-            const parsedResponse = JSON.parse(geminiResponse);
+            const parsedResponse = JSON.parse(jsonrepair(geminiResponse));
             Logger.info(methodName, 'Corpo do roadmap gerado com sucesso!');
             return parsedResponse;
         }
