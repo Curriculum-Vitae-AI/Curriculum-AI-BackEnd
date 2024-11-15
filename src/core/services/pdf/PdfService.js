@@ -49,7 +49,7 @@ export default class PdfService {
         const lines = pdf.splitTextToSize(text, maxWidth);
         for (const line of lines) {
             pdf.text(line, startWidth, startLine);
-            startLine += 7;
+            startLine += 8;
         }
         return startLine;
     }
