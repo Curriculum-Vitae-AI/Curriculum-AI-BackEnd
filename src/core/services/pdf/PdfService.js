@@ -83,14 +83,14 @@ export default class PdfService {
         pdf.setFont(HELVETICA, BOLD);
         pdf.setFontSize(18);
         pdf.setTextColor(0, 93, 170);
-        const text = geminiResponse.response.roadmapName;
+        const text = geminiResponse.response.roadmapName ? geminiResponse.response.roadmapName : 'ROADMAP';
         pdf.text(text, this.#getCenterWidth(pdf, text), 35);
     }
 
     #insertRoadMapBody(pdf, geminiResponse) {
         const response = geminiResponse.response;
         const values = {
-            'INICIANTE': response.begginner,
+            'INICIANTE': response.beginner,
             'INTERMEDIÁRIO': response.intermediate,
             'AVANÇADO': response.advanced
         };
@@ -99,24 +99,26 @@ export default class PdfService {
         let startLine = 55;
 
         Object.entries(values).forEach(([key, value]) => {
-            const textBlocks = [];
+            if (value !== undefined && value.topics) {
+                const textBlocks = [];
 
-            const updatedLine = this.#insertLevelHeader(startLine, key, textBlocks);
-            this.#insertTopics(pdf, updatedLine, value.topics, textBlocks);
+                const updatedLine = this.#insertLevelHeader(startLine, key, textBlocks);
+                this.#insertTopics(pdf, updatedLine, value.topics, textBlocks);
 
-            const rectHeight = key === 'INICIANTE' ? 250 : 280;
-            pdf.setFillColor(0, 93, 170);
-            pdf.roundedRect(5, startLine - 10, 200, rectHeight, 10, 10, 'F');
+                const rectHeight = key === 'INICIANTE' ? 250 : 280;
+                pdf.setFillColor(0, 93, 170);
+                pdf.roundedRect(5, startLine - 10, 200, rectHeight, 10, 10, 'F');
 
-            for (const text of textBlocks) {
-                pdf.setFont(text.font, text.fontType);
-                pdf.setFontSize(text.fontSize);
-                pdf.text(text.value, 10, text.position);
-            }
+                for (const text of textBlocks) {
+                    pdf.setFont(text.font, text.fontType);
+                    pdf.setFontSize(text.fontSize);
+                    pdf.text(text.value, 10, text.position);
+                }
 
-            if (key !== 'AVANÇADO') {
-                pdf.addPage();
-                startLine = 20;
+                if (key !== 'AVANÇADO') {
+                    pdf.addPage();
+                    startLine = 20;
+                }
             }
         });
     }
